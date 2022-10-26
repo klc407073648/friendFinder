@@ -104,7 +104,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
         //3.插入数据
         User user = new User();
-        user.setIphone("");
+        user.setPhone("");
         user.setEmail("");
         user.setUserStatus(0);
         user.setUserAccount(userAccount);
@@ -180,7 +180,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         safetyUser.setUserAccount(originUser.getUserAccount());
         safetyUser.setAvatarUrl(originUser.getAvatarUrl());
         safetyUser.setGender(originUser.getGender());
-        safetyUser.setIphone(originUser.getIphone());
+        safetyUser.setPhone(originUser.getPhone());
         safetyUser.setEmail(originUser.getEmail());
         safetyUser.setUserRole(originUser.getUserRole());
         safetyUser.setUserStatus(originUser.getUserStatus());

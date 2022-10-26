@@ -51,8 +51,6 @@
         else{
             Toast.fail('修改失败');
         }
-        //todo 将editKey，editName，currentValue提交到后台
-        //console.log('submit', values);
     };
 </script>
 

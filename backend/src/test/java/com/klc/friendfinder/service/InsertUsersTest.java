@@ -40,7 +40,7 @@ public class InsertUsersTest {
             user.setAvatarUrl("https://636f-codenav-8grj8px727565176-https://fastly.jsdelivr.net/npm/@vant/assets/weapp.svg");
             user.setGender(0);
             user.setUserPassword("12345678");
-            user.setIphone("11111");
+            user.setPhone("11111");
             user.setEmail("xxx@qq.com");
             user.setUserStatus(0);
             user.setUserRole(0);
@@ -68,7 +68,7 @@ public class InsertUsersTest {
             user.setAvatarUrl("https://636f-codenav-8grj8px727565176-https://fastly.jsdelivr.net/npm/@vant/assets/weapp.svg");
             user.setGender(0);
             user.setUserPassword("12345678");
-            user.setIphone("11111");
+            user.setPhone("11111");
             user.setEmail("xxx@qq.com");
             user.setUserStatus(0);
             user.setUserRole(0);
@@ -100,7 +100,7 @@ public class InsertUsersTest {
                 user.setAvatarUrl("https://636f-codenav-8grj8px727565176-https://fastly.jsdelivr.net/npm/@vant/assets/weapp.svg");
                 user.setGender(0);
                 user.setUserPassword("12345678");
-                user.setIphone("11111");
+                user.setPhone("11111");
                 user.setEmail("xxx@qq.com");
                 user.setUserStatus(0);
                 user.setUserRole(0);

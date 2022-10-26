@@ -47,7 +47,7 @@ public class User implements Serializable {
     /**
      * 电话
      */
-    private String iphone;
+    private String phone;
 
     /**
      * 邮箱

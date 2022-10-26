@@ -112,6 +112,11 @@ public class TeamController {
         boolean isAdmin = userService.isAdmin(request);
         //1.查询队伍列表
         List<TeamUserVO> teamList = teamService.listTeams(teamQuery,isAdmin);
+
+        //对于查询条件，返回结果为空的数据，不进行后续判断（公开，加密）
+        if(teamList == null || teamList.size()==0){
+            return ResultUtils.success(new ArrayList<TeamUserVO>());
+        }
         //2.判断当前用户是否加入队伍
         List<Long> teamIdList = teamList.stream().map(TeamUserVO::getId).collect(Collectors.toList());
         QueryWrapper<UserTeam> userTeamQueryWrapper = new QueryWrapper<>();
@@ -137,6 +142,7 @@ public class TeamController {
         teamList.forEach(team ->{
             team.setHasJoinNum(teamIdUserTeamList.getOrDefault(team.getId(),new ArrayList<>()).size());
         });
+
         return ResultUtils.success(teamList);
     }
 

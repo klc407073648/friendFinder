@@ -42,16 +42,16 @@
             userAccount:userAccount.value,
             userPassword:userPassword.value,
         })
-        console.log('用户登陆：', res);
+        console.log('用户登录：', res);
 
         if(res.code === 0 && res.data){
-            Toast.success('登陆成功')
+            Toast.success('登录成功')
 
             const redirectUrl = route.query?.redirect??'/';
             window.location.href = redirectUrl;
         }
         else{
-            Toast.fail('登陆失败')
+            Toast.fail('登录失败')
         }
     };
 </script>

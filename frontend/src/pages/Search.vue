@@ -34,34 +34,14 @@
     import { ref } from 'vue';
     import { Toast } from 'vant';
     import {useRouter} from "vue-router";
+    import {tagEnum} from "../constants/tag";
 
     const searchText = ref('');
 
     const activeIds = ref([]);
     const activeIndex = ref(0);
 
-    const originTagList = [
-        {
-            text: '性别',
-            children: [
-                { text: '男', id: '男' },
-                { text: '女', id: '女' },
-            ],
-        },
-        {
-            text: '年级',
-            children: [
-                { text: '大一', id: '大一' },
-                { text: '大二', id: '大二' },
-                { text: '大3', id: '大3' },
-                { text: '大4', id: '大4' },
-                { text: '大5', id: '大5' },
-                { text: '大6', id: '大6' },
-                { text: '大7', id: '大7' },
-                { text: '大8', id: '大8' },
-            ],
-        },
-    ];
+    const originTagList = tagEnum;
 
     let tagList =ref(originTagList);
 

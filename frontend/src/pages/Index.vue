@@ -1,11 +1,18 @@
 <template>
     <van-cell center title="心动模式">
         <template #right-icon>
-            <van-switch v-model="isMatchMode" size="24" />
+            <van-switch v-model="isMatchMode" size="24"/>
         </template>
     </van-cell>
+    <van-field v-if="isMatchMode === true" name="stepper" label="匹配人数">
+        <template #input>
+            <van-stepper v-model="matchNumber" min="3" max="10"/>
+        </template>
+    </van-field>
     <user-card-list :user-list="userList" :loading="loading"/>
     <van-empty v-if="!userList || userList.length < 1" description="数据为空"/>
+    <!--TODO 分页-->
+    <!--van-pagination v-model="currentPage" :page-count="12" mode="simple" /-->
 </template>
 
 <script setup lang="ts">
@@ -25,42 +32,39 @@
 
     const userList = ref();
     const loading = ref(true);
+    const matchNumber = ref();
 
     /**
      * 加载数据
      */
-    const loadDate = async () =>{
+    const loadDate = async () => {
         let userListData;
-        loading.value =true;
+        loading.value = true;
         //心动模式，根据标签匹配
-        if(isMatchMode.value){
-            const num = 2;
+        if (isMatchMode.value) {
             userListData = await myAxios.get('/user/match', {
                 params: {
-                    num
+                    num: matchNumber.value
                 },
             })
                 .then(function (response) {
                     console.log('/user/match succeed', response);
-                    console.log('response:' + response)
                     return response?.data;
                 })
                 .catch(function (error) {
                     console.error('/user/match error', error);
                     Toast.fail('请求失败')
                 })
-        }
-        else {
+        } else {
             //普通模式，直接分页查询
             userListData = await myAxios.get('/user/recommend', {
                 params: {
                     pageSize: 8,
-                    pageNum:1
+                    pageNum: 1
                 },
             })
                 .then(function (response) {
                     console.log('/user/recommend succeed', response);
-                    console.log('response:' + response)
                     return response?.data?.records;
                 })
                 .catch(function (error) {
@@ -68,10 +72,10 @@
                     Toast.fail('请求失败')
                 })
         }
-        loading.value =false;
+        loading.value = false;
 
         if (userListData) {
-            userListData.forEach((user:UserType) => {
+            userListData.forEach((user: UserType) => {
                 if (user.tags) {
                     user.tags = JSON.parse(user.tags);
                 }
@@ -80,7 +84,7 @@
         }
     }
 
-    watchEffect( () =>{
+    watchEffect(() => {
         console.log("current matchMode: " + isMatchMode.value);
         loadDate();
     })

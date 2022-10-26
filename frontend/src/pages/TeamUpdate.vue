@@ -95,7 +95,7 @@
             addTeamData.value = res.data;
         }
         else{
-            Toast.fail('加载队伍失败，请刷新重试')
+            Toast.fail('加载队伍失败' + (res.description?`, ${res.description}`:''));
         }
     })
 
@@ -114,7 +114,7 @@
                 replace:true,
             });
         }else{
-            Toast.fail('更新失败');
+            Toast.fail('更新失败'+ (res.description?`, ${res.description}`:''));
         }
     }
 </script>

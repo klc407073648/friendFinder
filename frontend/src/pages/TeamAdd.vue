@@ -103,7 +103,7 @@
                 replace:true,
             });
         }else{
-            Toast.fail('添加失败');
+            Toast.fail('创建队伍失败:' + (res.description?`, ${res.description}`:''));
         }
     }
 </script>

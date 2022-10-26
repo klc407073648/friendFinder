@@ -3,22 +3,20 @@
             :title="title"
             left-arrow
             @click-left="onClickLeft"
-            @click-right="onClickRight"
     >
-    <template #right>
-        <van-icon name="search" size="18" />
-    </template>
     </van-nav-bar>
 
-    <div name="content">
-        <router-view />
+    <div id="content">
+        <router-view/>
     </div>
 
     <!--van-tabbar v-model="active" @change="onChange"-->
-    <van-tabbar router @change="onChange">
+    <van-tabbar router @change="onChange" v-model="active">
         <van-tabbar-item to="/" icon="home-o" name="index">主页</van-tabbar-item>
-        <van-tabbar-item to="team" icon="search" name="team">队伍</van-tabbar-item>
-        <van-tabbar-item to="user" icon="friends-o" name="user">个人</van-tabbar-item>
+        <van-tabbar-item to="/search" icon="search" name="search">发现</van-tabbar-item>
+        <van-tabbar-item to="/message" icon="chat-o" name="message">消息</van-tabbar-item>
+        <van-tabbar-item to="/team" icon="friends-o" name="team">队伍</van-tabbar-item>
+        <van-tabbar-item to="/user" icon="manager-o" name="user">个人</van-tabbar-item>
     </van-tabbar>
 </template>
 
@@ -26,12 +24,21 @@
     import {ref} from "@vue/reactivity";
     import {useRoute,useRouter} from "vue-router";
     import routes from "../config/route";
+    import {Toast} from "vant";
 
     const router= useRouter();
     const route= useRoute();
+    const curActiveName = ref('index');
+
 
     const DEFAULT_TITLE = '伙伴匹配';
     const title = ref(DEFAULT_TITLE);
+
+    //TODO,目前仅是点击高亮，不能呈现实底的图标转换
+    const onChange = (index) => {
+        //Toast(`标签 ${index}`);
+        curActiveName.value =  index;
+    };
 
     /**
      * 根据路由，切换标题
@@ -49,14 +56,9 @@
         router.back()
     };
 
-    const onClickRight = () => {
-        router.push('/search')
-    };
-
 
 </script>
 
-<!-- TODO 底部边框显示按钮有问题 -->
 <style scoped>
     #content {
         padding-bottom: 50px;

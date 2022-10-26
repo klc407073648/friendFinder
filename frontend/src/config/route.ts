@@ -7,6 +7,7 @@ import Search from "../pages/Search.vue";
 import SearchResult from "../pages/SearchResult.vue";
 import UserEdit from "../pages/UserEdit.vue";
 import UserLogin from "../pages/UserLogin.vue";
+import UserSet from "../pages/UserSet.vue";
 
 import UserUpdate from "../pages/UserUpdate.vue";
 import UserTeamJoin from "../pages/UserTeamJoin.vue";
@@ -18,6 +19,7 @@ const routes = [
     { path: '/team/add', title: '创建队伍', component: TeamAdd },
     { path: '/team/update', title: '更新队伍', component: TeamUpdate },
     { path: '/user', title: '个人信息', component: User },
+    { path: '/user/set', title: '设置', component: UserSet },
     { path: '/search', title: '找伙伴', component: Search },
     { path: '/user/list',title: '用户列表',  component: SearchResult },
     { path: '/user/edit/',title: '编辑信息',  component: UserEdit },

@@ -29,7 +29,7 @@ class UserServiceTest {
         user.setAvatarUrl("");
         user.setGender(0);
         user.setUserPassword("");
-        user.setIphone("");
+        user.setPhone("");
         user.setEmail("");
         user.setUserStatus(0);
         user.setCreateTime(new Date());

@@ -290,7 +290,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team>
         }
         //3. 不能加入自己的队伍，不能重复加入已加入的队伍（幂等性）
         if(team.getUserId() == loginUser.getId()){
-
+            throw new BusinessException(ErrorCode.PARAMS_ERROR,"不能加入自己的队伍");
         }
         //4. 禁止加入私有的队伍
         Integer status = team.getStatus();

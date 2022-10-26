@@ -50,7 +50,7 @@
 
     const currentUser:UserType = ref();
     const showPasswordDialog = ref(false);
-    const password = '';
+    const password = ref('');
     const joinTeamId = ref();
 
 
@@ -88,6 +88,7 @@
         if(!joinTeamId.value){
             return;
         }
+
         const res = await myAxios.post('/team/join',{
             teamId:joinTeamId.value,
             password:password.value,

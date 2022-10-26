@@ -45,7 +45,6 @@
         })
         .then(function (response) {
             console.log('/user/search/tags succeed',response);
-            console.log('response:'+response)
             return response?.data;
         })
         .catch(function (error) {
