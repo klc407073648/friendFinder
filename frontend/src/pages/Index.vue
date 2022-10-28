@@ -9,8 +9,19 @@
             <van-stepper v-model="matchNumber" min="3" max="10"/>
         </template>
     </van-field>
-    <user-card-list :user-list="userList" :loading="loading"/>
-    <van-empty v-if="!userList || userList.length < 1" description="数据为空"/>
+    <van-field v-if="isMatchMode === false" name="stepper" label="匹配人数">
+        <template #input>
+            <van-stepper v-model="matchNumber" min="5" max="20"/>
+        </template>
+    </van-field>
+    <user-card-list :user-list="currentPageUserList" :loading="loading"/>
+    <van-empty v-if="!currentPageUserList || currentPageUserList.length < 1" description="数据为空"/>
+    <van-pagination
+            v-model="currentPage"
+            :total-items="total_items"
+            :items-per-page="items_per_page"
+            @change="pageChange"
+    />
     <!--TODO 分页-->
     <!--van-pagination v-model="currentPage" :page-count="12" mode="simple" /-->
 </template>
@@ -33,6 +44,20 @@
     const userList = ref();
     const loading = ref(true);
     const matchNumber = ref();
+    const currentPage =ref(1);
+    const total_items =ref(0);
+    const items_per_page =ref(5);
+    const currentPageUserList = ref();
+
+    /**
+     * 更新当前页的数据
+     */
+    const pageChange = async () => {
+        //计算对应页的数据
+        currentPageUserList.value = userList.value.slice((currentPage.value-1)*(items_per_page.value), currentPage.value*(items_per_page.value))
+        console.log(currentPage.value)
+        console.log(currentPageUserList.value)
+    }
 
     /**
      * 加载数据
@@ -59,7 +84,7 @@
             //普通模式，直接分页查询
             userListData = await myAxios.get('/user/recommend', {
                 params: {
-                    pageSize: 8,
+                    pageSize: matchNumber.value,
                     pageNum: 1
                 },
             })
@@ -81,6 +106,7 @@
                 }
             })
             userList.value = userListData
+            total_items.value = userList.value.length
         }
     }
 

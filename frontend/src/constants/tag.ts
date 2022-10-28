@@ -1,0 +1,98 @@
+export const tagEnum = [
+    {
+        text: '性别',
+        children: [
+            { text: '男', id: '男' },
+            { text: '女', id: '女' },
+        ],
+    },
+    {
+        text: '身份',
+        children: [
+            { text: '小学', id: '小学' },
+            { text: '初中', id: '初中' },
+            { text: '高中', id: '高中' },
+            { text: '大学', id: '大学' },
+            { text: '研究生', id: '研究生' },
+            { text: '博士', id: '博士' },
+            { text: '待业', id: '待业' },
+            { text: '工作中', id: '工作中' },
+        ],
+    },
+    {
+        text: '目标',
+        children: [
+            { text: '考研', id: '考研' },
+            { text: '春招', id: '春招' },
+            { text: '秋招', id: '秋招' },
+            { text: '社招', id: '社招' },
+            { text: '考公', id: '考公' },
+            { text: '转行', id: '转行' },
+            { text: '跳槽', id: '跳槽' },
+            { text: '自由职业', id: '自由职业' },
+        ],
+    },
+    {
+        text: '状态',
+        children: [
+            { text: '乐观', id: '乐观' },
+            { text: '迷茫', id: '迷茫' },
+            { text: '奋斗', id: '奋斗' },
+            { text: '沮丧', id: '沮丧' },
+            { text: '开心', id: '开心' },
+            { text: '悲伤', id: '悲伤' },
+        ],
+    },
+    {
+        text: '学习方向',
+        children: [
+            { text: '前端', id: '前端' },
+            { text: '后端', id: '后端' },
+            { text: '大数据', id: '大数据' },
+            { text: '运维', id: '运维' },
+            { text: '测试', id: '测试' },
+        ],
+    },
+    {
+        text: '正在学',
+        children: [
+            { text: 'Spring', id: 'Spring' },
+            { text: 'MySQL', id: 'MySQL' },
+            { text: 'Redis', id: 'Redis' },
+            { text: 'Vue', id: 'Vue' },
+            { text: 'ElasticSearch', id: 'ElasticSearch' },
+        ],
+    },
+    {
+        text: '编程语言',
+        children: [
+            { text: 'Python', id: 'Python' },
+            { text: 'C', id: 'C' },
+            { text: 'Java', id: 'Java' },
+            { text: 'C++', id: 'C++' },
+            { text: 'C#', id: 'C#' },
+            { text: 'Visual Basic', id: 'Visual Basic' },
+            { text: 'JavaScript', id: 'JavaScript' },
+            { text: 'Assembly Language', id: 'Assembly Language' },
+            { text: 'PHP', id: 'PHP' },
+            { text: 'SQL', id: 'SQL' },
+            { text: 'Go', id: 'Go' },
+            { text: 'R', id: 'R' },
+            { text: 'Objective-C', id: 'Objective-C' },
+        ],
+    },
+    {
+        text: '工作内容',
+        children: [
+            { text: '技术', id: '技术' },
+            { text: '产品', id: '产品' },
+            { text: '内容', id: '内容' },
+            { text: '设计', id: '设计' },
+            { text: '销售', id: '销售' },
+            { text: '财务', id: '财务' },
+            { text: '人力资源', id: '人力资源' },
+            { text: '行政支持', id: '行政支持' },
+            { text: '法务', id: '法务' },
+        ],
+    },
+];
