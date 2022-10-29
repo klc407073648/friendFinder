@@ -66,6 +66,7 @@
     import myAxios from "../plugins/myAxios";
     import {useRouter,useRoute} from "vue-router";
     import {Toast} from "vant";
+    import {updateTeam} from "../api/team";
 
     const router =useRouter();
     const route  =useRoute();
@@ -105,7 +106,7 @@
             status:Number(addTeamData.value.status)
         }
         //tod 前端参数校验
-        const res = await myAxios.post("/team/update",postData);
+        const res = await updateTeam(postData);
 
         if(res?.code === 0 && res.data){
             Toast.success('更新成功');
@@ -114,7 +115,7 @@
                 replace:true,
             });
         }else{
-            Toast.fail('更新失败'+ (res.description?`, ${res.description}`:''));
+            Toast.fail('更新失败:'+ (res.description?`${res.description}`:''));
         }
     }
 </script>

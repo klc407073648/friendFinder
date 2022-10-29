@@ -30,18 +30,16 @@
     import myAxios from "../plugins/myAxios";
     import {Toast} from "vant";
     import {useRouter,useRoute} from "vue-router";
+    import {userLogin} from "../api/user";
     const router= useRouter()
     const route= useRoute()
 
     const userAccount = ref('');
     const userPassword = ref('');
 
-
     const onSubmit = async () => {
-        const res = await myAxios.post('/user/login',{
-            userAccount:userAccount.value,
-            userPassword:userPassword.value,
-        })
+        const res = await userLogin(userAccount.value,userPassword.value);
+
         console.log('用户登录：', res);
 
         if(res.code === 0 && res.data){

@@ -14,6 +14,7 @@
     import {useRouter} from "vue-router";
     import myAxios from "../plugins/myAxios";
     import {Toast} from "vant";
+    import {userLogout} from "../api/user";
 
     const router = useRouter()
 
@@ -22,7 +23,7 @@
     };
 
     const onQuit = async () => {
-        const res = await myAxios.post('/user/logout', {})
+        const res = await userLogout();
         console.log('退出请求：', res);
 
         if (res.code === 0 && res.data) {

@@ -33,6 +33,8 @@
     import {Toast} from 'vant';
     import UserCardList from "../components/UserCardList.vue"
     import {UserType} from "../model/user";
+    import {getMatchUser,getRecommend} from "../api/user"
+    import {getMyCreateTeam} from "../api/team";
 
     const isMatchMode = ref<boolean>(false);
 
@@ -43,11 +45,18 @@
 
     const userList = ref();
     const loading = ref(true);
+    //匹配人数
     const matchNumber = ref(0);
+    /**
+     *  当前页数，总共用户数、每页显示人数
+     */
     const currentPage =ref(1);
     const total_items =ref(0);
     const items_per_page =ref(5);
+
+    //当前显示用户内容，当前页号
     const currentPageUserList = ref();
+    const currentPageNum = ref(1);
 
     /**
      * 更新当前页的数据
@@ -62,57 +71,33 @@
     /**
      * 加载数据
      */
-    const loadDate = async () => {
+    const loadData = async () => {
         let userListData;
         loading.value = true;
         //心动模式，根据标签匹配
         if (isMatchMode.value) {
-            userListData = await myAxios.get('/user/match', {
-                params: {
-                    num: matchNumber.value
-                },
-            })
-                .then(function (response) {
-                    console.log('/user/match succeed', response);
-                    return response?.data;
-                })
-                .catch(function (error) {
-                    console.error('/user/match error', error);
-                    Toast.fail('请求失败')
-                })
+            userListData = await getMatchUser(matchNumber.value);
         } else {
             //普通模式，直接分页查询
-            userListData = await myAxios.get('/user/recommend', {
-                params: {
-                    pageSize: matchNumber.value,
-                    pageNum: 1
-                },
-            })
-                .then(function (response) {
-                    console.log('/user/recommend succeed', response);
-                    return response?.data?.records;
-                })
-                .catch(function (error) {
-                    console.error('/user/recommend error', error);
-                    Toast.fail('请求失败')
-                })
+            userListData = await getRecommend(currentPageNum.value,matchNumber.value);
         }
-        loading.value = false;
 
         if (userListData) {
-            userListData.forEach((user: UserType) => {
+            userListData.forEach( (user: UserType) => {
                 if (user.tags) {
                     user.tags = JSON.parse(user.tags);
                 }
-            })
-            userList.value = userListData
-            total_items.value = userList.value.length
+            });
+            userList.value = userListData;
+            total_items.value = userList.value.length;
         }
+
+        loading.value = false;
     }
 
     watchEffect(() => {
         console.log("current matchMode: " + isMatchMode.value);
-        loadDate();
+        loadData();
     })
 
 </script>

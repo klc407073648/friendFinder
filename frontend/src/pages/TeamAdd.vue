@@ -71,6 +71,7 @@
     import myAxios from "../plugins/myAxios";
     import {useRouter} from "vue-router";
     import {Toast} from "vant";
+    import {createTeam} from "../api/team";
 
     const router =useRouter();
 
@@ -95,7 +96,7 @@
             status:Number(addTeamData.value.status)
         }
         //tod 前端参数校验
-        const res = await myAxios.post("/team/add",postData);
+        const res = await createTeam(postData);
 
         if(res?.code === 0 && res.data){
             router.push({
@@ -103,7 +104,7 @@
                 replace:true,
             });
         }else{
-            Toast.fail('创建队伍失败:' + (res.description?`, ${res.description}`:''));
+            Toast.fail('创建队伍失败:' + (res.description?`${res.description}`:''));
         }
     }
 </script>
