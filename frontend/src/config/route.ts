@@ -13,6 +13,8 @@ import UserUpdate from "../pages/UserUpdate.vue";
 import UserTeamJoin from "../pages/UserTeamJoin.vue";
 import UserTeamCreate from "../pages/UserTeamCreate.vue";
 
+import System from "../pages/System.vue";
+
 const routes = [
     { path: '/', component: Index },
     { path: '/team', title: '找队伍', component: Team },
@@ -27,6 +29,7 @@ const routes = [
     { path: '/user/update', title: '更新信息', component: UserUpdate },
     { path: '/user/team/join', title: '加入队伍', component: UserTeamJoin },
     { path: '/user/team/create', title: '创建队伍', component: UserTeamCreate },
+    { path: '/system', title: '关于系统', component: System },
 ]
 
 export  default  routes;

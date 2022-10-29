@@ -1,6 +1,12 @@
 <template>
     <!--van-button type="primary" @click="onResetUser">切换用户</van-button-->
-    <van-button type="danger" @click="onQuit">退出</van-button>
+    <van-cell title="关于伙伴匹配系统" is-link to="/system"/>
+    <div style="padding: 12px">
+        <van-button block type="primary" @click="onResetUser">切换账号</van-button>
+    </div>
+    <div style="padding: 12px">
+        <van-button block type="danger" @click="onQuit">退出</van-button>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -10,6 +16,10 @@
     import {Toast} from "vant";
 
     const router = useRouter()
+
+    const onResetUser = () => {
+        window.location.href = '/user/login';
+    };
 
     const onQuit = async () => {
         const res = await myAxios.post('/user/logout', {})

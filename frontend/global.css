@@ -6,3 +6,8 @@
     height:50px;
     border-radius: 50%;
 }
+
+.advice-submit-button{
+    position: fixed;
+    right: 12px;
+}
