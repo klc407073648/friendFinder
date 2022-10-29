@@ -1,18 +1,20 @@
-import Index from "../pages/Index.vue";
-import Team from "../pages/Team.vue";
-import TeamAdd from "../pages/TeamAdd.vue";
-import TeamUpdate from "../pages/TeamUpdate.vue";
-import User from "../pages/User.vue";
-import Search from "../pages/Search.vue";
-import SearchResult from "../pages/SearchResult.vue";
-import UserEdit from "../pages/UserEdit.vue";
+import Index from "../pages/home/Index.vue";
+
+import Team from "../pages/team/Team.vue";
+import TeamAdd from "../pages/team/TeamAdd.vue";
+import TeamUpdate from "../pages/team/TeamUpdate.vue";
+
+import Search from "../pages/search/Search.vue";
+import SearchResult from "../pages/search/SearchResult.vue";
+
+import User from "../pages/user/User.vue";
+import UserEdit from "../pages/user/UserEdit.vue";
+import UserSet from "../pages/user/UserSet.vue";
+import UserUpdate from "../pages/user/UserUpdate.vue";
+import UserTeamJoin from "../pages/user/UserTeamJoin.vue";
+import UserTeamCreate from "../pages/user/UserTeamCreate.vue";
+
 import UserLogin from "../pages/UserLogin.vue";
-import UserSet from "../pages/UserSet.vue";
-
-import UserUpdate from "../pages/UserUpdate.vue";
-import UserTeamJoin from "../pages/UserTeamJoin.vue";
-import UserTeamCreate from "../pages/UserTeamCreate.vue";
-
 import System from "../pages/System.vue";
 
 const routes = [

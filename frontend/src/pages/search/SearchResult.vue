@@ -6,9 +6,9 @@
 <script setup lang="ts">
     import {useRoute} from "vue-router";
     import {onMounted, ref} from 'vue';
-    import {searchTags} from "../api/user";
-    import UserCardList from "../components/UserCardList.vue"
-    import {UserType} from "../model/user";
+    import {searchTags} from "../../api/user";
+    import UserCardList from "../../components/UserCardList.vue"
+    import {UserType} from "../../model/user";
 
     const route= useRoute()
     console.log(route)

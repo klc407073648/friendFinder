@@ -34,7 +34,7 @@
     import { ref } from 'vue';
     import { Toast } from 'vant';
     import {useRouter} from "vue-router";
-    import {tagEnum} from "../constants/tag";
+    import {tagEnum} from "../../constants/tag";
 
     const searchText = ref('');
 

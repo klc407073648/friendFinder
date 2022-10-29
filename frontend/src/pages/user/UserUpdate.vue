@@ -16,8 +16,8 @@
 <script setup lang="ts">
     import {useRouter} from "vue-router";
     import {onMounted, ref} from "vue";
-    import {getCurrentUser} from "../services/user";
-    import {userGenderEnum} from '../constants/user';
+    import {getCurrentUser} from "../../services/user";
+    import {userGenderEnum} from '../../constants/user';
 
     const router =useRouter()
     const toEdit = ( editKey:string ,editName:string,currentValue:string) => {

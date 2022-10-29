@@ -12,9 +12,9 @@
 <script setup lang="ts">
 
     import {useRouter} from "vue-router";
-    import myAxios from "../plugins/myAxios";
+    import myAxios from "../../plugins/myAxios";
     import {Toast} from "vant";
-    import {userLogout} from "../api/user";
+    import {userLogout} from "../../api/user";
 
     const router = useRouter()
 

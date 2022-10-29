@@ -29,12 +29,12 @@
 <script setup lang="ts">
     import {useRoute} from "vue-router";
     import {onMounted, ref, watchEffect} from 'vue';
-    import myAxios from "../plugins/myAxios";
+    import myAxios from "../../plugins/myAxios";
     import {Toast} from 'vant';
-    import UserCardList from "../components/UserCardList.vue"
-    import {UserType} from "../model/user";
-    import {getMatchUser,getRecommend} from "../api/user"
-    import {getMyCreateTeam} from "../api/team";
+    import UserCardList from "../../components/UserCardList.vue"
+    import {UserType} from "../../model/user";
+    import {getMatchUser,getRecommend} from "../../api/user"
+    import {getMyCreateTeam} from "../../api/team";
 
     const isMatchMode = ref<boolean>(false);
 

@@ -33,6 +33,11 @@
                         :min-date="minDate"
                 />
             </van-popup>
+            <van-field name="stepper" label="最大人数">
+                <template #input>
+                    <van-stepper v-model="addTeamData.maxNum" min="3" max="10"/>
+                </template>
+            </van-field>
             <van-field name="radio" label="单选框">
                 <template #input>
                     <van-radio-group v-model="addTeamData.status" direction="horizontal">
@@ -62,43 +67,28 @@
 
 <script setup lang="ts">
 
-    import {onMounted, ref} from "vue";
-    import myAxios from "../plugins/myAxios";
-    import {useRouter,useRoute} from "vue-router";
+    import {ref} from "vue";
+    import myAxios from "../../plugins/myAxios";
+    import {useRouter} from "vue-router";
     import {Toast} from "vant";
-    import {updateTeam} from "../api/team";
+    import {createTeam} from "../../api/team";
 
     const router =useRouter();
-    const route  =useRoute();
 
+    const initFormData = {
+        "description": "",
+        "expireTime": "",
+        "maxNum": 3,
+        "name": "",
+        "password": "",
+        "status": 0,
+        "userId": 0
+    }
 
-    const addTeamData = ref({})
+    //用户填写的表单数据
+    const addTeamData = ref({...initFormData})
     const showPicker = ref(false)
     const minDate = new Date()
-
-    const id = route.query.id;
-
-    onMounted(async () => {
-        if( id <=0) {
-            Toast.fail('加载队伍失败');
-            return;
-        }
-
-        console.log("queryid:"+id)
-
-        const res = await myAxios.get('/team/get',{
-            params:{
-                id,
-            }
-        });
-
-        if(res?.code === 0){
-            addTeamData.value = res.data;
-        }
-        else{
-            Toast.fail('加载队伍失败' + (res.description?`, ${res.description}`:''));
-        }
-    })
 
     const onSubmit = async () => {
         const postData = {
@@ -106,16 +96,15 @@
             status:Number(addTeamData.value.status)
         }
         //tod 前端参数校验
-        const res = await updateTeam(postData);
+        const res = await createTeam(postData);
 
         if(res?.code === 0 && res.data){
-            Toast.success('更新成功');
             router.push({
                 path: '/team',
                 replace:true,
             });
         }else{
-            Toast.fail('更新失败:'+ (res.description?`${res.description}`:''));
+            Toast.fail('创建队伍失败:' + (res.description?`${res.description}`:''));
         }
     }
 </script>
