@@ -16,6 +16,7 @@ import UserTeamCreate from "../pages/user/UserTeamCreate.vue";
 
 import UserLogin from "../pages/UserLogin.vue";
 import System from "../pages/System.vue";
+import MyMessage from "../pages/message/MyMessage.vue";
 
 const routes = [
     { path: '/', component: Index },
@@ -32,6 +33,7 @@ const routes = [
     { path: '/user/team/join', title: '加入队伍', component: UserTeamJoin },
     { path: '/user/team/create', title: '创建队伍', component: UserTeamCreate },
     { path: '/system', title: '关于系统', component: System },
+    { path: '/message', title: '消息', component: MyMessage },
 ]
 
 export  default  routes;

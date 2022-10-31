@@ -66,7 +66,8 @@
     import myAxios from "../../plugins/myAxios";
     import {useRouter,useRoute} from "vue-router";
     import {Toast} from "vant";
-    import {updateTeam} from "../../api/team";
+    import {getTeam, updateTeam} from "../../api/team";
+    import {checkOperationResult} from "../../api/common";
 
     const router =useRouter();
     const route  =useRoute();
@@ -86,11 +87,7 @@
 
         console.log("queryid:"+id)
 
-        const res = await myAxios.get('/team/get',{
-            params:{
-                id,
-            }
-        });
+        const res = await getTeam(id);
 
         if(res?.code === 0){
             addTeamData.value = res.data;
@@ -108,15 +105,7 @@
         //tod 前端参数校验
         const res = await updateTeam(postData);
 
-        if(res?.code === 0 && res.data){
-            Toast.success('更新成功');
-            router.push({
-                path: '/team',
-                replace:true,
-            });
-        }else{
-            Toast.fail('更新失败:'+ (res.description?`${res.description}`:''));
-        }
+        checkOperationResult(res,'更新队伍',router);
     }
 </script>
 

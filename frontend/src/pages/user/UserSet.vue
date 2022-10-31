@@ -15,6 +15,7 @@
     import myAxios from "../../plugins/myAxios";
     import {Toast} from "vant";
     import {userLogout} from "../../api/user";
+    import {checkOperationResult} from "../../api/common";
 
     const router = useRouter()
 
@@ -26,12 +27,7 @@
         const res = await userLogout();
         console.log('退出请求：', res);
 
-        if (res.code === 0 && res.data) {
-            Toast.success('退出成功');
-            router.back();
-        } else {
-            Toast.fail('退出失败');
-        }
+        checkOperationResult(res,'用户退出',router);
     };
 
 

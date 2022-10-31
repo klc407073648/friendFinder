@@ -134,7 +134,8 @@ public class UserController {
     public BaseResponse<Page<User>> recommendUsers(long pageSize,long pageNum,HttpServletRequest request){
         User loginUser = userService.getLoginUser(request);
         //如果存在缓存数据，直接返回
-        String redisKey = String.format("yupao:user:recommand:%s",loginUser.getId());
+        //不能直接根据用户查询缓存，因为pageSize和pageNum可能不一样，即每次查询相同范围时，才应该缓存
+        String redisKey = String.format("yupao:user:recommand:%s:%s:%s",loginUser.getId(),pageNum,pageSize);
         ValueOperations<String, Object> valueOperations = redisTemplate.opsForValue();
         Page<User> userPage = (Page<User>) valueOperations.get(redisKey);
 

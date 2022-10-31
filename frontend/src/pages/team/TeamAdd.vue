@@ -72,6 +72,7 @@
     import {useRouter} from "vue-router";
     import {Toast} from "vant";
     import {createTeam} from "../../api/team";
+    import {checkOperationResult} from "../../api/common";
 
     const router =useRouter();
 
@@ -98,14 +99,7 @@
         //tod 前端参数校验
         const res = await createTeam(postData);
 
-        if(res?.code === 0 && res.data){
-            router.push({
-                path: '/team',
-                replace:true,
-            });
-        }else{
-            Toast.fail('创建队伍失败:' + (res.description?`${res.description}`:''));
-        }
+        checkOperationResult(res,'创建队伍',router);
     }
 </script>
 

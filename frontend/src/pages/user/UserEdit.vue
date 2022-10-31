@@ -23,6 +23,7 @@
     import myAxios from "../../plugins/myAxios";
     import {Toast} from "vant";
     import {getCurrentUser} from "../../services/user";
+    import {checkOperationResult} from "../../api/common";
 
     const router= useRouter()
     const route= useRoute()
@@ -44,13 +45,7 @@
         })
         console.log('更新请求：', res);
 
-        if( res.code === 0 && res.data ){
-            Toast.success('修改成功');
-            router.back();
-        }
-        else{
-            Toast.fail('修改失败');
-        }
+        checkOperationResult(res,'用户信息修改',router);
     };
 </script>
 

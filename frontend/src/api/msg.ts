@@ -7,13 +7,11 @@ import qs from 'qs';
  * @param searchContent 搜索内容
  * @param status 状态 0:'公开',1:'私有',2:'加密',
  */
-export async function getTeamList(searchContent = '', status = 0) {
-    const url = '/team/list';
-    return await myAxios.get(url, {
-        params: {
-            searchText: searchContent,
-            status
-        }
+export async function addMsg(content = '', targetId:number) {
+    const url = '/msg/add';
+    return await myAxios.post(url, {
+        content: content,
+        targetId:targetId,
     });
 }
 
@@ -74,29 +72,5 @@ export async function quitTeam(id: number) {
 export async function deleteTeam(id: number) {
     return await myAxios.post('/team/delete',{
         id
-    });
-}
-
-/**
- * 获取登录用户创建的队伍
- * @param searchContent 过滤条件
- */
-export async function getMyCreateTeam(searchContent = '') {
-    return await myAxios.get('/team/list/my/create', {
-        params: {
-            searchText: searchContent
-        }
-    });
-}
-
-/**
- * 获取登录用户加入的队伍
- * @param searchContent 过滤条件
- */
-export async function getMyJoinTeam(searchContent = '') {
-    return myAxios.get('/team/list/my/join', {
-        params: {
-            searchText: searchContent
-        }
     });
 }

@@ -11,12 +11,12 @@
     </div>
 
     <!--van-tabbar v-model="active" @change="onChange"-->
-    <van-tabbar router @change="onChange" v-model="active">
-        <van-tabbar-item to="/" icon="home-o" name="index">主页</van-tabbar-item>
-        <van-tabbar-item to="/search" icon="search" name="search">发现</van-tabbar-item>
-        <van-tabbar-item to="/message" icon="chat-o" name="message">消息</van-tabbar-item>
-        <van-tabbar-item to="/team" icon="friends-o" name="team">队伍</van-tabbar-item>
-        <van-tabbar-item to="/user" icon="manager-o" name="user">个人</van-tabbar-item>
+    <van-tabbar router @change="onChange" v-model="active" active-color="#ee0a24" inactive-color="#000">
+        <van-tabbar-item to="/" :icon="curActiveName==='index'?'home-o':'home-o'" name="index">主页</van-tabbar-item>
+        <van-tabbar-item to="/search" :icon="curActiveName==='search'?'search':'search'" name="search">发现</van-tabbar-item>
+        <van-tabbar-item to="/message" :icon="curActiveName==='message'?'chat':'chat-o'" name="message">消息</van-tabbar-item>
+        <van-tabbar-item to="/team" :icon="curActiveName==='team'?'friends':'friends-o'" name="team">队伍</van-tabbar-item>
+        <van-tabbar-item to="/user" :icon="curActiveName==='user'?'manager':'manager-o'"  name="user">个人</van-tabbar-item>
     </van-tabbar>
 </template>
 
@@ -29,6 +29,7 @@
     const router= useRouter();
     const route= useRoute();
     const curActiveName = ref('index');
+    const indexIcon = ref("home-o")
 
 
     const DEFAULT_TITLE = '伙伴匹配';

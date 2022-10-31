@@ -45,6 +45,8 @@
     import {ref} from "vue";
     import {UserType} from "../model/user";
     import {useRouter} from "vue-router";
+    import {deleteTeam, joinTeam, quitTeam} from "../api/team";
+    import {checkResult} from "../api/common";
 
     const router =useRouter();
 
@@ -89,18 +91,9 @@
             return;
         }
 
-        const res = await myAxios.post('/team/join',{
-            teamId:joinTeamId.value,
-            password:password.value,
-        });
+        const res = await joinTeam(joinTeamId.value,password.value);
 
-        if(res?.code === 0){
-            Toast.success('加入成功')
-            doJoinCancel();
-        }
-        else{
-            Toast.fail('加入失败' + (res.description?`, ${res.description}`:''))
-        }
+        checkResult(res,'加入队伍');
     }
 
     /**
@@ -121,16 +114,9 @@
      * @param id
      */
     const doQuitTeam = async (id:number) =>{
-        const res = await myAxios.post('/team/quit',{
-            teamId:id
-        });
+        const res = await quitTeam(id);
 
-        if(res?.code === 0){
-            Toast.success('操作成功')
-        }
-        else{
-            Toast.fail('操作失败' + (res.description?`, ${res.description}`:''))
-        }
+        checkResult(res,'退出队伍');
     }
 
     /**
@@ -138,18 +124,10 @@
      * @param id
      */
     const doDeleteTeam = async (id:number) =>{
-        const res = await myAxios.post('/team/delete',{
-            id
-        });
+        const res = await deleteTeam(id);
 
-        if(res?.code === 0){
-            Toast.success('操作成功')
-        }
-        else{
-            Toast.fail('操作失败' + (res.description?`, ${res.description}`:''))
-        }
+        checkResult(res,'解散队伍');
     }
-
 </script>
 
 <style scoped>

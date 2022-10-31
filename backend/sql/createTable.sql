@@ -79,5 +79,17 @@ create table user_team
     isDelete     tinyint  default 0                  not null comment '是否删除'
 )comment '用户队伍关系';
 
+-- 消息表
+create table msg
+(
+    id         bigint auto_increment comment 'id' primary key,
+    sendId     bigint                             not null comment '发送方Id',
+    targetId   bigint                             not null comment '目标Id',
+    content    varchar(1024)                      not null comment '消息内容',
+    createTime datetime default CURRENT_TIMESTAMP null comment '创建时间',
+    updateTime datetime default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP,
+    idDelete   tinyint  default 0                 not null comment '是否删除',
+)comment '消息表';
+
 
 

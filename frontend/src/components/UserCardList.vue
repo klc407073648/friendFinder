@@ -11,7 +11,7 @@
                 </van-tag>
             </template>
             <template #footer>
-                <van-button size="mini">联系我</van-button>
+                <van-button size="mini" @click="ContactMe(user.id)">联系我</van-button>
             </template>
         </van-card>
     </van-skeleton>
@@ -19,15 +19,29 @@
 
 <script setup lang="ts">
     import {UserType} from "../model/user";
+    import {useRouter} from "vue-router";
 
     interface UserCardListProps {
         loading:boolean;
         userList:UserType[];
     }
+
+    const router =useRouter();
+
     const props = withDefaults(defineProps<UserCardListProps>(),{
         // @ts-ignore
         userList: [] as UserType[],
     });
+
+    const ContactMe = ( id:number) => {
+        console.log("ContactMe id:" + id);
+        router.push({
+            path: '/message',
+            query: {
+                id,
+            }
+        })
+    }
 </script>
 
 <style scoped>
