@@ -2,12 +2,16 @@ import myAxios from "../plugins/myAxios";
 import {Toast} from 'vant';
 import qs from 'qs';
 
+const success = ' succeed'
+const error = ' error'
+const rquest_fail = '请求失败'
+
 /**
  * 根据标签搜索
  * @param searchContent 搜索内容
  * @param status 状态 0:'公开',1:'私有',2:'加密',
  */
-export async function addMsg(content = '', targetId:number) {
+export async function addMsg(targetId:number,content = '') {
     const url = '/msg/add';
     return await myAxios.post(url, {
         content: content,
@@ -15,62 +19,27 @@ export async function addMsg(content = '', targetId:number) {
     });
 }
 
+export async function deleteMsg(sendId:number,content = '') {
+    const url = '/msg/delete';
+    return await myAxios.post(url, {
+        content: content,
+        sendId:sendId,
+    });
+}
+
 /**
  * 创建队伍
  * @param postData 队伍信息
  */
-export async function createTeam(postData: any) {
-    return await myAxios.post("/team/add", postData);
-}
-
-/**
- * 获取队伍
- * @param postData 队伍信息
- */
-export async function getTeam(id: any) {
-    return await myAxios.get('/team/get', {
-        params: {
-            id,
-        }
-    });
-}
-
-/**
- * 更新队伍
- * @param postData 队伍信息
- */
-export async function updateTeam(postData: any) {
-    return await myAxios.post("/team/update", postData);
-}
-
-
-/**
- * 加入队伍
- * @param postData 队伍信息
- */
-export async function joinTeam(teamId: number,password:string) {
-    return await myAxios.post('/team/join',{
-        teamId:teamId,
-        password:password,
-    });
-}
-
-/**
- * 退出队伍
- * @param id 队伍id
- */
-export async function quitTeam(id: number) {
-    return await myAxios.post('/team/quit',{
-        teamId:id
-    });
-}
-
-/**
- * 解散队伍
- * @param id 队伍id
- */
-export async function deleteTeam(id: number) {
-    return await myAxios.post('/team/delete',{
-        id
-    });
+export async function getCurrentUserMsg() {
+    const url = "/msg/get/current/msg";
+    return await myAxios.get(url)
+        .then(function (response) {
+            console.log(url + success, response);
+            return response?.data;
+        })
+        .catch(function (error) {
+            console.error(url + error, error);
+            Toast.fail(rquest_fail)
+        })
 }

@@ -58,15 +58,24 @@ public class MsgController {
     }
 
     @PostMapping("/delete")
-    public BaseResponse<Boolean> deleteMsg(@RequestBody MsgDeleteRequest msgDeleteRequest){
+    public BaseResponse<Boolean> deleteMsg(@RequestBody MsgDeleteRequest msgDeleteRequest, HttpServletRequest request){
         if(msgDeleteRequest ==null || StringUtils.isBlank(msgDeleteRequest.getContent())){
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
+        User user = userService.getLoginUser(request);
+
         QueryWrapper<Msg> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("sendId", msgDeleteRequest.getSendId());
+        queryWrapper.eq("targetId", user.getId());
         queryWrapper.eq("content", msgDeleteRequest.getContent());
         Msg deleteMsg = msgService.getOne(queryWrapper);
 
+        if(deleteMsg ==null ){
+            throw new BusinessException(ErrorCode.PARAMS_ERROR,"要删除的消息不存在");
+        }
+
         boolean result = msgService.removeById(deleteMsg.getId());
+
         if( !result){
             throw new BusinessException(ErrorCode.SYSTEM_ERROR);
         }
@@ -81,11 +90,11 @@ public class MsgController {
         return ResultUtils.success(true);
     }
 
-    @PostMapping("/get/current/msg")
+    @GetMapping("/get/current/msg")
     public BaseResponse<List<Msg>> getCurrentUserMsg(HttpServletRequest request){
         User user = userService.getLoginUser(request);
         QueryWrapper<Msg> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("sendId", user.getId());
+        queryWrapper.eq("targetId", user.getId());
         List<Msg> msgList = msgService.list(queryWrapper);
         return ResultUtils.success(msgList);
     }
