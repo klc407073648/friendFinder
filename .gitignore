@@ -41,7 +41,7 @@
 /backend/!.mvn/wrapper/maven-wrapper.jar
 /backend/!**/src/main/**/target/
 /backend/!**/src/test/**/target/
-/backend/src/main/resources/application*
+/backend/src/main/resources/application-prod.yml
 
 ### STS ###
 /backend/.apt_generated
@@ -72,3 +72,5 @@
 ### VS Code ###
 /backend/.vscode/
 
+# deploy
+/deploy/docker/conf/config-prod

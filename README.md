@@ -120,6 +120,7 @@ yarn install 或 npm -i
 ### 设计理念
 
 1. 前端：组件复用、api接口统一封装、系统常量封装、pages页目录根据模块分层
+
 2. 后端：
   1. 熟悉 SpringBoot 框架
   2. 利用SpringMVC + MyBatis + MyBatis Plus（提高开发效率）

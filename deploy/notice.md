@@ -8,7 +8,7 @@
 
 1. 利用WebStorm生成dist文件
 
-![](./images/前端生成dist.png)
+![](./docker/images/前端生成dist.png)
 
 2. 将对应的docker配置文件和Dockerfile放到对应路径下
 
@@ -31,7 +31,7 @@ docker run -p 3000:3000 -d friend-finder-frontend:v0.0.1
 
 1. 利用Idea ,执行mvn package生成jar
 
-![](./images/后端生成jar.png)
+![](./docker/images/后端生成jar.png)
 
 2. 将对应的/target/friend-finder-0.0.1-SNAPSHOT.jar和Dockerfile放到对应路径下
 
