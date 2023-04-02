@@ -26,7 +26,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/msg")
-@CrossOrigin(origins = {"http://localhost:3000","http://localhost:8000"},allowedHeaders = "*",methods = {},allowCredentials = "true")
+@CrossOrigin(origins = {"http://localhost:3000","http://localhost:8000","http://81.68.132.31:3000"},allowedHeaders = "*",methods = {},allowCredentials = "true")
 @Slf4j
 public class MsgController {
     @Resource
