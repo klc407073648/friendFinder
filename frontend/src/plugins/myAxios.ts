@@ -1,11 +1,12 @@
 import axios from "axios";
 
-const isDev = process.env.NODE_ENV === 'development'
+//const isDev = process.env.NODE_ENV === 'development'
 
 // Set config defaults when creating the instance
 const myAxios = axios.create({
-    baseURL: isDev?'http://localhost:8080/api':'http://1.1.1.1:8080/api'
+    baseURL: 'http://$FRIENDFINDER_BACKEND_IP:$FRIENDFINDER_BACKEND_PORT/api'
 });
+//http://localhost:8080/api
 
 myAxios.defaults.withCredentials =true;
 
