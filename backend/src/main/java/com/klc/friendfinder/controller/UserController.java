@@ -31,7 +31,7 @@ import static com.klc.friendfinder.constant.UserConstant.USER_LOGIN_STATE;
  */
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(origins = {"http://localhost:3000","http://localhost:8000","http://81.68.132.31:3000"},allowedHeaders = "*",methods = {},allowCredentials = "true")
+@CrossOrigin(origins = {"http://localhost:3000","http://81.68.132.31:3000"},allowedHeaders = "*",methods = {},allowCredentials = "true")
 @Slf4j
 public class UserController {
     @Resource
