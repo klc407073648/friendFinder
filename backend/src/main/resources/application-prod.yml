@@ -8,7 +8,7 @@ spring:
   # DataSource Config
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://$MYSQL_IP:$MYSQL_PORT/$MYSQL_DATABASE
+    url: jdbc:mysql://$MYSQL_IP:$MYSQL_PORT/$FRIENDFINDER_BACKEND_DATABASE
     username: $MYSQL_USER
     password: $MYSQL_PASSWORD
   session:
@@ -25,12 +25,12 @@ spring:
     password: $REDIS_PASSWORD
 
 server:
-  port: 8080
+  port: $FRIENDFINDER_BACKEND_PORT
   servlet:
     context-path: /api
     session:
       cookie:
-        domain: $FRIENDFINDER_BACKEND_IP
+        domain: $FRIENDFINDER_BACKEND_IP #用于设置有效域名
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: false
