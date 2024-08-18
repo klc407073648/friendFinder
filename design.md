@@ -337,4 +337,44 @@
 - 使用VO对象过滤敏感信息
 - 全局异常封装类
 - 公共的请求/响应类实现、错误码定义
- 
+
+### SSO 单点登录机制
+
+application.yml 里将服务器的会话信息存储在redis中，而不是本地缓存。
+
+这样两个Spring Boot应用，使用端口分别是9000和9001;
+利用nginx做负载均衡，可以实现两个Spring Boot应用都具有相同的sessionId，如果停掉任意一台应用，系统还有另外一台服务器提供服务，会话信息保存在Redis中。
+
+```
+spring:
+  session:
+    timeout: 86400
+    store-type: redis
+```
+
+![](./images/session-redis.png)
+
+同时，在用户登录时，种上cookie
+
+```
+//4.记录用户登录态
+request.getSession().setAttribute(USER_LOGIN_STATE,safetyUser);
+```
+
+![](./images/client-cookie.png)
+
+单点登录实现：
+
+**用cookie + redis实现**
+
+* cookie特点：是一种客户端技术，每次发送请求，带着cookie值进行发送
+
+* redis特点：基于key-value进行存储
+
+实现方式：在项目中任何一个模块进行登录，登录之后，把数据放到两个地方：
+
+1. redis：在key：生成唯一随机值，在value：存放用户数据
+
+2. cookie：把redis里面生成的key值放到cookie里面
+
+​访问项目中访问其他模块时，发送请求带着cookie进行发送，获取cookie值，到redis根据key进行查询，如果查询到数据就是 登录，查不到就没有登录。
